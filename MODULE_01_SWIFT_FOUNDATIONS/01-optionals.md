@@ -1,22 +1,19 @@
 # Optionals
 
-## What are Optionals?
+## Mental Model
 
-Optionals represent a value that may or may not exist.
+An optional explicitly models absence.
 
 ```swift
-var name: String?
+String?
 ```
-
-Meaning:
-- contains String
+means:
+- a String value
 - or nil
 
-## Why Needed
+This avoids hidden null crashes.
 
-Avoid null pointer style crashes by making absence explicit.
-
-## Safe Unwrapping
+## Unwrapping Techniques
 
 ### if let
 ```swift
@@ -30,12 +27,32 @@ if let name = name {
 guard let user = user else { return }
 ```
 
-## Force Unwrap
+Preferred for early exits.
+
+### nil coalescing
 ```swift
-name!
+let display = name ?? "Guest"
 ```
-Unsafe if nil.
 
-## Interview Answer
+### optional chaining
+```swift
+user.profile?.avatarURL
+```
 
-Optionals make absence explicit and force safer handling compared to implicit null usage.
+## Implicitly Unwrapped Optionals
+
+```swift
+@IBOutlet weak var label: UILabel!
+```
+
+Use sparingly.
+
+## map / flatMap
+
+Transform optional values safely.
+
+## Interview Pitfalls
+
+- force unwrap crashes
+- nested optionals
+- IUO misuse
