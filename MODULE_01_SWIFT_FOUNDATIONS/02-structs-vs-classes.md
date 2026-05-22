@@ -1,9 +1,10 @@
 # Structs vs Classes
 
-## Core Difference
+## Core Model
 
 Structs are value types.
 Classes are reference types.
+Actors are reference types with isolation.
 
 ## Value Semantics
 
@@ -17,7 +18,7 @@ var b = a
 b.name = "Alex"
 ```
 
-a remains unchanged.
+`a` remains unchanged.
 
 ## Reference Semantics
 
@@ -28,14 +29,21 @@ class User {
 }
 ```
 
-Copies share same object.
+Copies reference same object.
 
-## Class-only Features
+## Class Features
 - inheritance
+- identity (`===`)
 - deinit
-- identity checks
 - ARC
+- shared mutable state
 
-## Interview Answer
+## Struct Features
+- safer defaults
+- thread-friendlier semantics
+- predictable copying
+- copy-on-write with stdlib collections
 
-Use structs by default for predictable value semantics. Use classes when shared mutable state or identity is required.
+## Interview Guidance
+Prefer structs by default.
+Use classes when identity/shared mutation is required.
