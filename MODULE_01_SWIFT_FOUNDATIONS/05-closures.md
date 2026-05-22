@@ -1,10 +1,10 @@
 # Closures
 
-## Definition
+## Mental Model
 
-A closure is executable behavior plus captured surrounding context.
+Closures are executable code blocks that can capture surrounding context.
 
-## Example
+## Syntax
 
 ```swift
 let greet = {
@@ -12,9 +12,7 @@ let greet = {
 }
 ```
 
-## Capture
-
-Closures can retain surrounding values.
+## Capture Semantics
 
 ```swift
 var x = 10
@@ -23,13 +21,20 @@ let closure = {
 }
 ```
 
-## Capture List
+Closures capture referenced values.
+
+## Capture Lists
 
 ```swift
 { [weak self] in }
 ```
 
-Used to control ownership.
+Also:
+```swift
+{ [x] in }
+```
+
+Useful for explicit value capture.
 
 ## Escaping
 
@@ -37,12 +42,20 @@ Used to control ownership.
 @escaping
 ```
 
-Used when closure outlives function scope.
+Closure survives function lifetime.
+
+## Nonescaping
+Default behavior.
+
+Compiler can optimize more aggressively.
 
 ## Autoclosure
 
-Automatically wraps expressions into closures.
+Automatically wraps expressions lazily.
 
-## Interview Answer
+## Retain Cycles
+Closures can strongly capture objects.
+Use weak/unowned carefully.
 
-Closures are reusable executable code blocks that can capture surrounding context and are widely used in callbacks and async programming.
+## Interview Guidance
+Closures power callbacks, async APIs, functional transformations, and event handling.
