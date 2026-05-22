@@ -1,21 +1,21 @@
 # ARC & Memory Management
 
-## What is ARC?
+## ARC
 
-Automatic Reference Counting manages memory for reference types by tracking strong references.
+Automatic Reference Counting manages memory for reference types.
 
 Applies to:
 - classes
 - actors
 
-Does not apply to:
+Not applied to:
 - structs
 - enums
 
-## Mental Model
+## Ownership Mental Model
 
-Each strong reference increments ownership.
-When count reaches zero, object deallocates.
+Strong references own objects.
+When strong ownership reaches zero, deallocation occurs.
 
 ## Retain Cycle
 
@@ -24,22 +24,29 @@ A ----strong----> B
 B ----strong----> A
 ```
 
-ARC cannot break cyclic ownership automatically.
+ARC cannot resolve cyclic ownership automatically.
 
-## weak vs unowned
-
-### weak
+## weak
 - non-owning
-- auto nil
 - optional
-- safe for uncertain lifetime
+- auto nil
+- safe when lifetime uncertain
 
-### unowned
+## unowned
 - non-owning
 - non-optional
-- crashes if invalid
+- crashes if invalid access occurs
 - use when lifetime guaranteed
 
-## Interview Answer
+## Common Sources
+- closure captures
+- delegates
+- parent-child object graphs
 
-Weak is used when referenced objects may disappear. Unowned is used when lifetime is guaranteed.
+## Tools
+Detect leaks with:
+- Memory Graph Debugger
+- Instruments Leaks
+
+## Interview Guidance
+Most leaks in iOS are ownership graph mistakes, especially closures and delegates.
