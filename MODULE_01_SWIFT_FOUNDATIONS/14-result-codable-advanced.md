@@ -6,23 +6,34 @@
 Result<Success, Failure>
 ```
 
-Encapsulates success/failure explicitly.
+Represents explicit success/failure outcomes.
 
 ```swift
 func load(completion: (Result<User, Error>) -> Void)
 ```
 
-Useful in callback APIs and composable error flows.
+Compare:
+- `throws` for synchronous/async structured flows
+- `Result` for explicit value transport and callback APIs
 
-## Advanced Codable
+## Codable
 
-Topics:
+Codable = Encodable + Decodable.
+
+## Common Features
 - CodingKeys
 - custom init(from:)
 - custom encode(to:)
 - nested containers
-- date decoding strategies
+- keyed/unkeyed containers
+- date strategies
 - snake_case conversion
-- decoding polymorphic payloads
 
-Interview tip: Codable works well for standard schemas, but custom decoding is often needed in real APIs.
+## Real API Challenges
+- mismatched schemas
+- polymorphic payloads
+- optional fields
+- inconsistent server data
+
+## Interview Guidance
+Codable is productive for standard schemas, but real production apps often require custom decoding logic.
