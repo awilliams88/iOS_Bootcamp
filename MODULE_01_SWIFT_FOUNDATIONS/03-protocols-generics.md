@@ -2,7 +2,7 @@
 
 ## Protocols
 
-Protocols define contracts.
+Protocols define behavioral contracts.
 
 ```swift
 protocol NetworkService {
@@ -10,15 +10,17 @@ protocol NetworkService {
 }
 ```
 
-Any conforming type must implement required behavior.
-
-## Protocol Extensions
-
-Protocols can provide default implementations.
+Capabilities:
+- property requirements
+- method requirements
+- initializer requirements
+- static requirements
+- inheritance
+- composition
 
 ## Associated Types
 
-Used when protocol needs a placeholder type.
+Protocols sometimes need placeholder types.
 
 ```swift
 protocol Repository {
@@ -27,11 +29,12 @@ protocol Repository {
 }
 ```
 
-Why not generic properties? Protocols describe requirements, not concrete storage.
+This allows conformers to choose concrete type later.
+
+## Why PATs Matter
+Protocols with associated types cannot be used directly without abstraction help because required concrete type information is incomplete.
 
 ## Generics
-
-Reusable type-safe abstraction.
 
 ```swift
 func compare<T: Equatable>(_ a: T, _ b: T) -> Bool {
@@ -39,6 +42,11 @@ func compare<T: Equatable>(_ a: T, _ b: T) -> Bool {
 }
 ```
 
-## Interview Answer
+Advanced topics:
+- constraints
+- where clauses
+- generic types
+- specialization
 
-Protocols define behavior contracts. Generics provide reusable type-safe abstraction. Associated types allow protocols to defer concrete type definition to conformers.
+## Interview Guidance
+Use generics for compile-time specialization, existentials for runtime abstraction storage.
